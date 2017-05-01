@@ -18,8 +18,10 @@ app.controller('LoginController', ['$scope', '$rootScope', '$location', 'LoginFa
         console.log('IN Register Submit');
         console.log($scope.user);
         LoginFactory.insertUser($scope.user).then(function (response) {
-            console.log(response);
             console.log(response.data.message);
+            $scope.message = response.data.message+' kindly login to proceed !!!';
+            $scope.user = {};
+            $('#messageModal').modal('show');
         }, function(error) {
             $scope.message = 'Unable to insert new user: ' + error.data.message;
             $('#messageModal').modal('show');
