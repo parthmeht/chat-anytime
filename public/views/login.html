@@ -1,0 +1,106 @@
+<section class="card">
+  <form name="myform"
+    ng-submit="login()"
+    novalidate>
+
+    <div class="textintro">
+      <h1>Hi there!</h1>
+      <p>Log-in to access the awesomeness!</p>
+    </div>
+
+    <fieldset>
+      <input type="email" name="email" placeholder="Email"
+       ng-model="loginCreds.email" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.email.$invalid && myform.email.$touched">
+      Must be a valid email</p>
+
+
+      <input type="password" name="password" placeholder="Password"
+      ng-model="loginCreds.password" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.password.$invalid && myform.email.$touched">
+      Password is required</p>
+
+    </fieldset>
+
+    <button type="submit" class="btn"
+      ng-disabled="myform.$invalid">Login</button>
+    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    <p><a ng-href="#!register">register</a> or <a data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password</a></p>
+  </form>
+</section>
+
+<!-- Modal Starts -->
+<div class="modal fade" id="forgotPasswordModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Forgot Password</h4>
+      </div>
+      <div class="modal-body">
+        <div ng-show="mailDiv">
+          <form class="form-horizontal" name="sendMailForm" ng-submit="sendMail()" novalidate>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" ng-model="forgotPassword.email" ng-required="true" id="inputEmail3" placeholder="Email">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn" ng-disabled="sendMailForm.$invalid">Send Mail</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div ng-show="tokenDiv">
+          <h6>{{winMessage}}</h6>
+          <form class="form-horizontal" name="tokenForm" ng-submit="sendTokenAndPass()" novalidate>
+            <div class="form-group">
+              <label for="token" class="col-sm-4 control-label">Token</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="forgotPassword.token" ng-required="true" id="token" placeholder="Token">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="newPassword" class="col-sm-4 control-label">New Password</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" ng-model="forgotPassword.newPassword" ng-required="true" id="newPassword" placeholder="New Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn" ng-disabled="sendMailForm.$invalid">Set New Password</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Ends -->
+
+<!-- Message Modal Starts -->
+  <div class="modal fade" id="messageModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Message</h4>
+        </div>
+        <div class="modal-body">
+          <h6>{{message}}</h6>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Message Modal Ends -->
+

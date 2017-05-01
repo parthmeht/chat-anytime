@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+    <!-- Libraries -->
+    <script src="static/js/lib/angular/1.6.4/angular.min.js"></script>
+    <script src="static/js/lib/angular/1.6.4/angular-route.min.js"></script>
+    <script src="static/js/lib/angular/1.6.4/angular-resource.min.js"></script>
+    <script src="static/js/lib/angular/1.6.4/angular-cookies.min.js"></script>
+    <script src="static/js/lib/jquery/3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="static/css/themes/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AngularJs Files -->
+    <script src="static/js/module.js"></script>
+    <script src="static/js/factory.js"></script>
+    <script src="static/js/routes.js"></script>
+    <script src="static/js/controller.js"></script>
+
+    <link rel='stylesheet' href="static/css/themes/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel='stylesheet' href="static/css/themes/bootstrap/dist/css/bootstrap-theme.min.css" />
+    <link rel='stylesheet' href="static/css/style.css" />
+
+  </head>
+  <body>
+
+    <header>
+      <nav class="cf" ng-include="'static/views/nav.html'"></nav>
+    </header>
+
+    <div class="page">
+      <main class="cf" ng-view>
+      </main>
+    </div>
+
+  </body>
+</html>

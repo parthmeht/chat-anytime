@@ -1,0 +1,9 @@
+  <div ng-controller="NavController">
+    <div class="branding"><a ng-href="#!/">Chat Anytime</a></div>
+    <ul>
+      <li><a ng-hide="globals.currentUser" ng-href="#!login">Login</a></li>
+      <li><a ng-hide="globals.currentUser" ng-href="#!register">Register</a></li>
+      <li><a ng-show="globals.currentUser" ng-href="#!change-password">Change Password</a></li>
+      <li><a ng-show="globals.currentUser" ng-click="logout()">Log Out</a></li>
+    </ul>
+  </div>
