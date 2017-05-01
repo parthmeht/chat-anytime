@@ -18,14 +18,14 @@ app.factory('LoginFactory', ['Base64', '$http', '$cookieStore', '$rootScope', '$
     LoginFactory.Login = function (username, password) {
         /* Use this for real authentication
             ----------------------------------------------*/
+        var authdata = Base64.encode(username + ':' + password)
         return $http({
         url : urlBase+'/authenticate',
         method : 'POST',
         headers : {
             "content-type" : 'application/x-www-form-urlencoded',    
-            "authorization": "Basic cGFydGhtZWh0QGdtYWlsLmNvbTp0ZXN0MTIz",
+            "authorization": "Basic "+authdata,
             "cache-control": "no-cache",
-            "postman-token": "6ee73c02-b58f-18c6-9e0c-7a42d93c620a"
             }
         })
     };
@@ -36,9 +36,7 @@ app.factory('LoginFactory', ['Base64', '$http', '$cookieStore', '$rootScope', '$
         method : 'GET',
         headers : {
             "x-access-token": token,   
-            "authorization": "Basic cGFydGhtZWh0QGdtYWlsLmNvbTp0ZXN0MTIz",
             "cache-control": "no-cache",
-            "postman-token": "36009927-d389-827e-6691-4507c7abe31f"
             }
         })
     };
@@ -50,9 +48,7 @@ app.factory('LoginFactory', ['Base64', '$http', '$cookieStore', '$rootScope', '$
         data   : user,
         headers : {
             "x-access-token": token,   
-            "authorization": "Basic cGFydGhtZWh0QGdtYWlsLmNvbTp0ZXN0MTIz",
             "cache-control": "no-cache",
-            "postman-token": "36009927-d389-827e-6691-4507c7abe31f"
             }
         })
     };

@@ -105,8 +105,10 @@ app.controller('HomeController',['$scope','$rootScope', '$location', 'LoginFacto
             $scope.changePass.email = $rootScope.globals.currentUser.username;
             LoginFactory.changeUserPassword($scope.changePass,$rootScope.globals.currentUser.token).then(function (response) {
                 if(response.status==200) {
-                    console.log(response);
+                    $scope.message = response.data.message;
                     $scope.changePass = {};
+                    $('#messageModal').modal('show');
+                    console.log($scope.message);
                 } else {
                     $scope.message = response.data.message;
                     $scope.changePass = {};
