@@ -42,7 +42,14 @@ exports.resetPasswordInit = (email) =>
 			}
 		})
 		.then(user => {
-			const transporter = nodemailer.createTransport(`smtps://${config.email}:${config.password}@smtp.gmail.com`);
+			const transporter = nodemailer.createTransport({
+				service: 'gmail',
+				auth: {
+					user: `${config.email}`,
+					pass: `${config.password}`
+				}
+			});
+			//const transporter = nodemailer.createTransport(`smtps://${config.email}:${config.password}@smtp.gmail.com`);
 			const mailOptions = {
     			from: `"${config.name}" <${config.email}>`,
     			to: email,  
